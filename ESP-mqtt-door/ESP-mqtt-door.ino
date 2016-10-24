@@ -33,7 +33,7 @@ DHT dht(DHTPIN, DHTTYPE);
 
 #define ECHO 4
 #define TRIG 5
-int relay = 15;
+int relay = 14;
 
 CMMC_Blink blinker;
 CMMC_Interval timer001;
@@ -126,17 +126,23 @@ void loop()
   duration = pulseIn(ECHO, HIGH);
   distance = (duration / 2) / 29.1;
 
-  if (distance <= 50)  {
+  if (distance <= 40)  {
     count += 1;
     digitalWrite(relay, HIGH);
+    delay(10000);
   } else {
     digitalWrite(relay, LOW);
   }
+  
   Serial.print("Distance = ");
   Serial.print(distance);
   Serial.println(" cm");
-  delay(100);
+//  Serial.print(" count = ");
+//  Serial.print(count);
+//  Serial.print(" relay = ");
+//  Serial.println(digitalRead(relay));
 
   mqtt->loop();
-  timer001.every_ms(2000, read_dht);
+  timer001.every_ms(5000, read_dht);
+  delay(100);
 }

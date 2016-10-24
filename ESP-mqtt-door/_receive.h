@@ -1,4 +1,3 @@
-/* Channel ESP-NOW */
 extern int relay;
 
 PubSubClient::callback_t on_message_arrived = 
@@ -12,5 +11,5 @@ PubSubClient::callback_t on_message_arrived =
     } else if(payload == "OFF") {
       digitalWrite(relay, LOW);
     }
-    Serial.println(text);
+    Serial.println(payload);
  };

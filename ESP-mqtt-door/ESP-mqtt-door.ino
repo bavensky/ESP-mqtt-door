@@ -33,7 +33,7 @@ DHT dht(DHTPIN, DHTTYPE);
 
 #define ECHO 4
 #define TRIG 5
-int relay = 14;
+int relay = 13;
 
 CMMC_Blink blinker;
 CMMC_Interval timer001;
@@ -129,9 +129,11 @@ void loop()
   if (distance <= 40)  {
     count += 1;
     digitalWrite(relay, HIGH);
+    digitalWrite(LED_BUILTIN, LOW);
     delay(10000);
   } else {
     digitalWrite(relay, LOW);
+    digitalWrite(LED_BUILTIN, HIGH);
   }
   
   Serial.print("Distance = ");

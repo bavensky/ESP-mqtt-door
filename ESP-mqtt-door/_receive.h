@@ -8,8 +8,10 @@ PubSubClient::callback_t on_message_arrived =
     
     if(payload == "ON")  {
       digitalWrite(relay, HIGH);
+      digitalWrite(LED_BUILTIN, LOW);
     } else if(payload == "OFF") {
       digitalWrite(relay, LOW);
+      digitalWrite(LED_BUILTIN, HIGH);
     }
     Serial.println(payload);
  };
